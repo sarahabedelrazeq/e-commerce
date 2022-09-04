@@ -1,5 +1,5 @@
 {
-  "name": "sadeed-project",
+  "name": "sarah-e-commerce-project",
   "version": "3.6.1",
   "private": true,
   "dependencies": {
@@ -47,9 +47,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "env-cmd -f .env.development react-scripts start",
-    "start:staging": "env-cmd -f .env.staging react-scripts start",
-    "build": "env-cmd -f .env.production react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

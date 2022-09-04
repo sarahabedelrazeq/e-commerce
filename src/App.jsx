@@ -55,7 +55,7 @@ const App = () => {
     }
   }, [dispatch, isLoggedIn]);
 
-  if (auth_checked && !authLoading.checkLogin && !appLoading.categoryTypes) {
+  if (true) {
     return (
       <div className="App">
         <ErrorBoundary>

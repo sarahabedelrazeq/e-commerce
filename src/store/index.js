@@ -23,7 +23,7 @@ const authReducerFilter = createFilter("auth", ["access_token"]);
 const userReducerFilter = createFilter("user", ["cart"]);
 
 const persistConfig = {
-  key: "sadeed_web_app",
+  key: "sarah_e-commerce_project",
   whitelist: ["app", "auth", "user"],
   storage,
   transforms: [appReducerFilter, authReducerFilter, userReducerFilter],

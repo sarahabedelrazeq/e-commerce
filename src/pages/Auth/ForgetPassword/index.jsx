@@ -62,7 +62,7 @@ export default function ForgetPassword() {
     <div className="page-container">
       {loading && (
         <div className="vh-100 vw-100 position-fixed d-flex align-items-center justify-content-center top-0 left-0 right-0 bottom-0 overlay">
-          <Oval color="#00BFFF" height={80} width={80} />
+          <Oval color="#ffee00" height={80} width={80} />
         </div>
       )}
       <section id="Login">
