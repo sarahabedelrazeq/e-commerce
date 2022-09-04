@@ -1,0 +1,26 @@
+$color-white: #ffffff;
+$nav--links-color: #4c5ba8;
+$nav--links-color-hover: #ffa500;
+$nav--links-font-size: 18px;
+
+$theme-colors: (
+  "primary": #0063f7,
+  "secondary": #ff8800,
+  "info": #4c5ba8,
+  "Teal": #00cfde,
+  "danger": red,
+  "black": #000,
+  "dark": #28293d,
+  "blue": #004fc4,
+  "light": #FAFAFC,
+  "light2": #F2F2F5,
+  "light3": #E4E4EB,
+  "light4": #c7c9d9,
+  "light5": #8f90a6,
+  "light6": #555770,
+  "star": #ffcc00,
+);
+
+@function theme-color($key) {
+  @return map-get($theme-colors, $key);
+}

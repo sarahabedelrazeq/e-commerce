@@ -1,0 +1,26 @@
+#cart {
+  align-items: center;
+
+  .cart--product-img {
+    img {
+      width: 80%;
+    }
+  }
+
+  .input-group {
+    padding: 0 12px !important;
+    width: 100px;
+  }
+
+  .cart--wichlist-icon {
+    cursor: pointer;
+
+    &:active,
+    &.active {
+      svg,
+      svg * {
+        fill: red;
+      }
+    }
+  }
+}

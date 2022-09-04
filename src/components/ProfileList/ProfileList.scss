@@ -1,0 +1,31 @@
+#ProfileList {
+  .profileList--balance-field {
+    border-radius: 12px 0 0 12px;
+  }
+
+  .profileList--section-btn {
+    border-radius: 0px 12px 12px 0px;
+  }
+
+
+  .dropdown-item {
+    &.active,
+    &:hover,
+    &:focus,
+    &:active {
+      background: #f2f2f5;
+      border-radius: 12px;
+    }
+  }
+}
+html[dir="ltr"] {
+  .profileList--balance-field {
+    border-radius: 0px 12px 12px 0px !important;
+
+  }
+
+  .profileList--section-btn {
+    border-radius: 12px 0 0 12px !important;
+
+  }
+}
