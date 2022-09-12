@@ -1,50 +1,40 @@
 import { Send } from "@mui/icons-material";
-import styled from "styled-components";
-import { mobile } from "../responsive";
+import { styled } from "@mui/material";
 
-const Container = styled.div`
-  height: 60vh;
-  background-color: #fcf5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-const Title = styled.h1`
-  font-size: 70px;
-  margin-bottom: 20px;
-`;
+const Container = styled("div")(({ theme, ...props }) => ({
+  height: "60vh",
+  backgroundColor: "#fcf5f5",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+}));
 
-const Desc = styled.div`
-  font-size: 24px;
-  font-weight: 300;
-  margin-bottom: 20px;
-  ${mobile({ textAlign: "center" })}
+const Title = styled("h1")(({ theme, ...props }) => ({
+  fontSize: "70px",
+  marginBottom: "20px",
+}));
 
-`;
+const Desc = styled("div")(({ theme, ...props }) => ({
+  fontSize: "24px",
+  fontWeight: "300",
+  marginBottom: "20px",
+}));
 
-const InputContainer = styled.div`
-  width: 50%;
-  height: 40px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid lightgray;
-  ${mobile({ width: "80%" })}
-`;
+const InputContainer = styled("div")(({ theme, ...props }) => ({
+  width: "50%",
+  height: "40px",
+  backgroundColor: "white",
+  display: "flex",
+  justifyContent: "spaceBetween",
+  border: "1px solid lightgray",
+}));
 
-const Input = styled.input`
-  border: none;
-  flex: 8;
-  padding-left: 20px;
-`;
-
-const Button = styled.button`
-  flex: 1;
-  border: none;
-  background-color: teal;
-  color: white;
-`;
+const Input = styled("input")(({ theme, ...props }) => ({
+  border: "none",
+  flex: "8",
+  paddingLeft: "20px",
+}));
 
 const Newsletter = () => {
   return (
@@ -53,9 +43,9 @@ const Newsletter = () => {
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
         <Input placeholder="Your email" />
-        <Button>
+        <button className="btn btn-teal rounded-0">
           <Send />
-        </Button>
+        </button>
       </InputContainer>
     </Container>
   );
