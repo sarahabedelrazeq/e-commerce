@@ -1,5 +1,6 @@
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge, Container, Grid, Box } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
@@ -7,11 +8,10 @@ const Navbar = () => {
     <div className="py-2">
       <Container>
         <Grid spacing={2} container alignItems="center" width="100%">
-          <Grid item md={3} xs={4}>
-            <h1 className="fw-bold">LAMA.</h1>
-          </Grid>
-          <Grid item md={1} xs={2}>
-            <span>EN</span>
+          <Grid item md={4} xs={6}>
+            <h1 className="fw-bold text-black">
+              <Link href="/">LAMA.</Link>
+            </h1>
           </Grid>
           <Grid item md={4} xs={4} className="d-none d-md-block">
             <div className="border border-gray py-2 px-3 d-flex align-items-center justify-content-between">

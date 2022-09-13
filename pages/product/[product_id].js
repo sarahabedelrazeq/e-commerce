@@ -1,166 +1,111 @@
 import { Add, Remove } from "@mui/icons-material";
-import styled from "styled-components";
-import Announcement from "../../components/Announcement";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
-import Newsletter from "../../components/Newsletter";
-import { mobile } from "../../responsive";
-
-const Container = styled.div``;
-
-const Wrapper = styled.div`
-  padding: 50px;
-  display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
-`;
-
-const ImgContainer = styled.div`
-  flex: 1;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 90vh;
-  object-fit: cover;
-  ${mobile({ height: "40vh" })}
-`;
-
-const InfoContainer = styled.div`
-  flex: 1;
-  padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
-`;
-
-const Title = styled.h1`
-  font-weight: 200;
-`;
-
-const Desc = styled.p`
-  margin: 20px 0px;
-`;
-
-const Price = styled.span`
-  font-weight: 100;
-  font-size: 40px;
-`;
-
-const FilterContainer = styled.div`
-  width: 50%;
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
-`;
-
-const Filter = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const FilterTitle = styled.span`
-  font-size: 20px;
-  font-weight: 200;
-`;
-
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-`;
-
-const FilterSize = styled.select`
-  margin-left: 10px;
-  padding: 5px;
-`;
-
-const FilterSizeOption = styled.option``;
-
-const AddContainer = styled.div`
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
-`;
-
-const AmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-`;
-
-const Amount = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid teal;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0px 5px;
-`;
-
-const Button = styled.button`
-  padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
-  cursor: pointer;
-  font-weight: 500;
-
-  &:hover {
-    background-color: #f8f4f4;
-  }
-`;
+import { Button, Grid, Rating } from "@mui/material";
+import { Container } from "@mui/system";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React from "react";
 
 const Product = () => {
+  const [product, setProduct] = React.useState([]);
+  const [productLoading, setProductLoading] = React.useState(false);
+  const router = useRouter();
+  const { product_id } = router.query;
+
+  const productDataGetter = React.useCallback(async () => {
+    if (product_id) {
+      const data = await fetch(
+        `https://fakestoreapi.com/products/${product_id}`
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          return json;
+        });
+      setProduct(data);
+      setProductLoading(false);
+    }
+  }, [product_id]);
+
+  React.useEffect(() => {
+    setProductLoading(true);
+    productDataGetter();
+  }, [productDataGetter, product_id]);
+
+  const test = {
+    category: "jewelery",
+    description:
+      "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+    id: 5,
+    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+    price: 695,
+    rating: { rate: 4.6, count: 400 },
+    title:
+      "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+  };
+
   return (
-    <Container>
-      <Wrapper>
-        <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-            tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
-          </Desc>
-          <Price>$ 20</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-    </Container>
+    <div>
+      <section className="mb-5">
+        <Container>
+          {productLoading ? (
+            <div></div>
+          ) : (
+            product && (
+              <Grid spacing={2} container alignItems="center">
+                <Grid item xs={6}>
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    height="300px"
+                    width="300px"
+                    objectFit="contain"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    xs={6}
+                    maxWidth="100%"
+                    width="100%"
+                    minWidth="100%"
+                  >
+                    <Grid item xs={12} className="mb-5">
+                      <h3 className="mb-3">{product.title}</h3>
+                      <p className="mb-3">{product.description}</p>
+                      <div className="d-flex align-items-center justify-content-between">
+                        <div>
+                          <span className="fs-3">{product.price}$</span>
+                        </div>
+                        <div>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={product.rating?.rate}
+                            precision={0.5}
+                            readOnly
+                          />
+                        </div>
+                      </div>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Button>
+                        <Remove />
+                      </Button>
+                      <Button variant="outlined">1</Button>
+                      <Button>
+                        <Add />
+                      </Button>
+                    </Grid>
+                    <Grid item xs={6} className="text-end">
+                      <Button variant="outlined">ADD TO CART</Button>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            )
+          )}
+        </Container>
+      </section>
+    </div>
   );
 };
 

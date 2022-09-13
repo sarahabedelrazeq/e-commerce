@@ -25,27 +25,20 @@ const Info = styled("div")(({ theme, ...props }) => ({
 const Container = styled("div")(({ theme, ...props }) => ({
   flex: 1,
   margin: "5px",
-  minWidth: "280px",
   height: "350px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#f5fbfd",
+  backgroundColor: "#fff",
   position: "relative",
-
   "&:hover .Info": {
     opacity: 1,
   },
 }));
-const Circle = styled("div")(({ theme, ...props }) => ({
-  width: "200px",
-  height: "200px",
-  borderRadius: "50%",
-  backgroundColor: "white",
-  position: "absolute",
-}));
 const Image = styled("img")(({ theme, ...props }) => ({
-  height: "75%",
+  height: "350px",
+  width: "100%",
+  objectFit: "contain",
   zIndex: 2,
 }));
 const Icon = styled("div")(({ theme, ...props }) => ({
@@ -63,17 +56,17 @@ const Icon = styled("div")(({ theme, ...props }) => ({
     transform: "scale(1.1)",
   },
 }));
+
 const Product = ({ item }) => {
   return (
     <Container>
-      <Circle />
-      <Image src={item.img} />
+      <Image src={item.image} />
       <Info className="Info">
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <Link href="/product/4">
+          <Link href={`/product/${item.id}`}>
             <SearchOutlined />
           </Link>
         </Icon>

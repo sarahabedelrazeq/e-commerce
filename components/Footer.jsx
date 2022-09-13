@@ -7,13 +7,11 @@ import {
   Room,
   Twitter,
 } from "@mui/icons-material";
+import { Grid } from "@mui/material";
+import { Container } from "@mui/system";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
-const Container = styled.div`
-  display: flex;
-  ${mobile({ flexDirection: "column" })}
-`;
 
 const Left = styled.div`
   flex: 1;
@@ -71,7 +69,6 @@ const Right = styled.div`
   flex: 1;
   padding: 20px;
   ${mobile({ backgroundColor: "#fff8f8" })}
-
 `;
 
 const ContactItem = styled.div`
@@ -81,64 +78,71 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Footer = () => {
   return (
-    <Container>
-      <Left>
-        <Logo>LAMA.</Logo>
-        <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
-        </Desc>
-        <SocialContainer>
-          <SocialIcon color="3B5999">
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon color="E4405F">
-            <Instagram />
-          </SocialIcon>
-          <SocialIcon color="55ACEE">
-            <Twitter />
-          </SocialIcon>
-          <SocialIcon color="E60023">
-            <Pinterest />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>Contact</Title>
-        <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
-        </ContactItem>
-        <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
-        </ContactItem>
-        <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@lama.dev
-        </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
-      </Right>
-    </Container>
+    <div>
+      <Container>
+        <Grid spacing={2} container alignItems="center">
+          <Grid item sm={4} xs={12}>
+            <Logo>LAMA.</Logo>
+            <Desc>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form, by
+              injected humour, or randomised words which don’t look even
+              slightly believable.
+            </Desc>
+            <SocialContainer>
+              <SocialIcon color="3B5999">
+                <Facebook />
+              </SocialIcon>
+              <SocialIcon color="E4405F">
+                <Instagram />
+              </SocialIcon>
+              <SocialIcon color="55ACEE">
+                <Twitter />
+              </SocialIcon>
+              <SocialIcon color="E60023">
+                <Pinterest />
+              </SocialIcon>
+            </SocialContainer>
+          </Grid>
+          <Grid item sm={4} xs={12}>
+            <Title>Useful Links</Title>
+            <List>
+              <ListItem>Home</ListItem>
+              <ListItem>Cart</ListItem>
+              <ListItem>Man Fashion</ListItem>
+              <ListItem>Woman Fashion</ListItem>
+              <ListItem>Accessories</ListItem>
+              <ListItem>My Account</ListItem>
+              <ListItem>Order Tracking</ListItem>
+              <ListItem>Wishlist</ListItem>
+              <ListItem>Wishlist</ListItem>
+              <ListItem>Terms</ListItem>
+            </List>
+          </Grid>
+          <Grid item sm={4} xs={12}>
+            <Title>Contact</Title>
+            <ContactItem>
+              <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
+              Tobinchester 98336
+            </ContactItem>
+            <ContactItem>
+              <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+            </ContactItem>
+            <ContactItem>
+              <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+            </ContactItem>
+            <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
   );
 };
 
 export default Footer;
+
