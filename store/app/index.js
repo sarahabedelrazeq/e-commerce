@@ -1,31 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getWorkflow } from "./actions";
 
 const initialState = {
   language: "ar",
-  workflow: {
-    data: {},
-    loading: false,
-  },
+  cart: {},
+  cartLength: 0,
 };
 
 const appSlice = createSlice({
   name: "app",
   initialState,
-  reducers: {},
-  extraReducers: {
-    [getWorkflow.pending]: (state, action) => {
-      state.workflow.loading = true;
+  reducers: {
+    addToCart: (state, action) => {
+      state.cart = { ...state.cart, [action.payload.id]: action.payload.num };
+      state.cartLength = Object.values(state.cart).length;
     },
-    [getWorkflow.fulfilled]: (state, action) => {
-      state.workflow.loading = false;
-      state.workflow.data[action.payload?.name] = action.payload?.data;
-    },
-    [getWorkflow.rejected]: (state, action) => {
-      state.workflow.loading = false;
+    cartLength: (state, action) => {
+      return Object.values(state.cart).length;
     },
   },
 });
 
-export { getWorkflow };
+export const { addToCart } = appSlice.actions;
 export default appSlice.reducer;

@@ -1,5 +1,6 @@
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Skeleton as MaterialSkeleton } from "@mui/material";
+import Container from "../Container";
 
 const Skeleton = () => {
   return (

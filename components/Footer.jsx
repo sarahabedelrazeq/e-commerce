@@ -8,9 +8,9 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import Container from "./Container";
 
 
 const Left = styled.div`

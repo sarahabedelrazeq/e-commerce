@@ -1,7 +1,10 @@
 import { Add, Remove } from "@mui/icons-material";
 import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
+import React from "react";
+import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Container from "../../components/Container";
 import { mobile } from "../../responsive";
 
 const Top = styled.div`
@@ -131,108 +134,117 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const { cartLength, cart } = useSelector(({ app }) => app);
+  const [products, setProducts] = React.useState([]);
+  const [productsLoading, setProductsLoading] = React.useState(false);
+
+  const productDataGetter = React.useCallback(async () => {
+    const data = await fetch(`https://fakestoreapi.com/products`)
+      .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+    setProducts(data);
+    setProductsLoading(false);
+  }, []);
+
+  React.useEffect(() => {
+    setProductsLoading(true);
+    productDataGetter();
+  }, [productDataGetter]);
+
   return (
     <div className="page_container">
-      <Container>
-        <Grid spacing={2} container alignItems="center" width="100%">
-          <Grid item xs={12}>
-            <h1>YOUR BAG</h1>
-          </Grid>
-          <Grid item xs={12}>
-            <Top>
-              <TopButton>CONTINUE SHOPPING</TopButton>
-              <TopTexts>
-                <TopText>Shopping Bag(2)</TopText>
-                <TopText>Your Wishlist (0)</TopText>
-              </TopTexts>
-              <TopButton type="filled">CHECKOUT NOW</TopButton>
-            </Top>
-          </Grid>
-          <Grid item xs={12}>
-            <Bottom>
-              <Grid spacing={2} container alignItems="center" width="100%">
-                <Grid item lg={8} xs={12}>
-                  <Info>
-                    <Product>
-                      <ProductDetail>
-                        <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
-                        <Details>
-                          <span>
-                            <b>Product:</b> JESSIE THUNDER SHOES
-                          </span>
-                          <span>
-                            <b>ID:</b> 93813718293
-                          </span>
-                          <ProductColor color="black" />
-                          <span>
-                            <b>Size:</b> 37.5
-                          </span>
-                        </Details>
-                      </ProductDetail>
-                      <PriceDetail>
-                        <ProductAmountContainer>
-                          <Add />
-                          <ProductAmount>2</ProductAmount>
-                          <Remove />
-                        </ProductAmountContainer>
-                        <ProductPrice>$ 30</ProductPrice>
-                      </PriceDetail>
-                    </Product>
-                    <Hr />
-                    <Product>
-                      <ProductDetail>
-                        <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-                        <Details>
-                          <span>
-                            <b>Product:</b> HAKURA T-SHIRT
-                          </span>
-                          <span>
-                            <b>ID:</b> 93813718293
-                          </span>
-                          <ProductColor color="gray" />
-                          <span>
-                            <b>Size:</b> M
-                          </span>
-                        </Details>
-                      </ProductDetail>
-                      <PriceDetail>
-                        <ProductAmountContainer>
-                          <Add />
-                          <ProductAmount>1</ProductAmount>
-                          <Remove />
-                        </ProductAmountContainer>
-                        <ProductPrice>$ 20</ProductPrice>
-                      </PriceDetail>
-                    </Product>
-                  </Info>
+      <section className="mb-5">
+        <Container>
+          <Grid spacing={2} container alignItems="center" width="100%">
+            <Grid item xs={12}>
+              <h1>YOUR BAG</h1>
+            </Grid>
+            <Grid item xs={12}>
+              <Top>
+                <TopButton>CONTINUE SHOPPING</TopButton>
+                <TopTexts>
+                  <TopText>Shopping Bag(2)</TopText>
+                  <TopText>Your Wishlist (0)</TopText>
+                </TopTexts>
+                <TopButton type="filled">CHECKOUT NOW</TopButton>
+              </Top>
+            </Grid>
+            <Grid item xs={12}>
+              <Bottom>
+                <Grid spacing={2} container alignItems="center" width="100%">
+                  <Grid item lg={8} xs={12}>
+                    <Info>
+                      {productsLoading ? (
+                        <Skeleton count={1} height={240} />
+                      ) : (
+                        products &&
+                        products.map((product, index) => {
+                          if (cart[product.id] && cart[product.id] > 0)
+                            return (
+                              <Product key={index}>
+                                <ProductDetail>
+                                  <Image
+                                    src={product.image}
+                                    alt={product.title}
+                                  />
+                                  <Details>
+                                    <span>
+                                      <b>Product:</b> {product.title}
+                                    </span>
+                                    <span>
+                                      <b>ID:</b> {product.id}
+                                    </span>
+                                  </Details>
+                                </ProductDetail>
+                                <PriceDetail>
+                                  <ProductAmountContainer>
+                                    <Add />
+                                    <ProductAmount>
+                                      {cart[product.id]}
+                                    </ProductAmount>
+                                    <Remove />
+                                  </ProductAmountContainer>
+                                  <ProductPrice>${product.price}</ProductPrice>
+                                </PriceDetail>
+                              </Product>
+                            );
+                          else return null;
+                        })
+                      )}
+
+                      <Hr />
+                    </Info>
+                  </Grid>
+                  <Grid item lg={4} xs={12}>
+                    <Summary>
+                      <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                      <SummaryItem>
+                        <span>Subtotal</span>
+                        <span>$ 80</span>
+                      </SummaryItem>
+                      <SummaryItem>
+                        <span>Estimated Shipping</span>
+                        <span>$ 5.90</span>
+                      </SummaryItem>
+                      <SummaryItem>
+                        <span>Shipping Discount</span>
+                        <span>$ -5.90</span>
+                      </SummaryItem>
+                      <SummaryItem type="total">
+                        <span>Total</span>
+                        <span>$ 80</span>
+                      </SummaryItem>
+                      <Button>CHECKOUT NOW</Button>
+                    </Summary>
+                  </Grid>
                 </Grid>
-                <Grid item lg={4} xs={12}>
-                  <Summary>
-                    <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                    <SummaryItem>
-                      <span>Subtotal</span>
-                      <span>$ 80</span>
-                    </SummaryItem>
-                    <SummaryItem>
-                      <span>Estimated Shipping</span>
-                      <span>$ 5.90</span>
-                    </SummaryItem>
-                    <SummaryItem>
-                      <span>Shipping Discount</span>
-                      <span>$ -5.90</span>
-                    </SummaryItem>
-                    <SummaryItem type="total">
-                      <span>Total</span>
-                      <span>$ 80</span>
-                    </SummaryItem>
-                    <Button>CHECKOUT NOW</Button>
-                  </Summary>
-                </Grid>
-              </Grid>
-            </Bottom>
+              </Bottom>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </section>
     </div>
   );
 };

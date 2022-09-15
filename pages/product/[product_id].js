@@ -1,9 +1,9 @@
 import { Add, Remove } from "@mui/icons-material";
 import { Button, Grid, Rating } from "@mui/material";
-import { Container } from "@mui/system";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import Container from "../../components/Container";
 
 const Product = () => {
   const [product, setProduct] = React.useState([]);

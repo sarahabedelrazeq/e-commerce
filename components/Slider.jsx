@@ -1,9 +1,8 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
-import { Button, Container, Grid, styled } from "@mui/material";
-import Image from "next/image";
+import { Button, Grid, styled } from "@mui/material";
 import { useState } from "react";
 import { sliderItems } from "../data";
-import { mobile } from "../responsive";
+import Container from "./Container";
 
 const Arrow = styled("div")(({ theme, ...props }) => ({
   width: "50px",

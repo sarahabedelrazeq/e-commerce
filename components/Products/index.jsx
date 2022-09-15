@@ -1,6 +1,7 @@
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { popularProducts } from "../../data";
+import Container from "../Container";
 import Product from "../Product";
 
 const Products = ({data}) => {

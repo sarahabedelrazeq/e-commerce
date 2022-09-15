@@ -1,9 +1,13 @@
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
-import { Badge, Container, Grid, Box } from "@mui/material";
+import { Badge, Grid, Box } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import Container from "./Container";
 
 const Navbar = () => {
+  const [cartLength, setCartLength] = React.useState(0);
+
   return (
     <div className="py-2">
       <Container>
@@ -13,9 +17,9 @@ const Navbar = () => {
               <Link href="/">LAMA.</Link>
             </h1>
           </Grid>
-          <Grid item md={4} xs={4} className="d-none d-md-block">
+          <Grid item md={4} xs={0} className="d-none d-md-block">
             <div className="border border-gray py-2 px-3 d-flex align-items-center justify-content-between">
-              <input placeholder="Search" className="border-0" />
+              <input placeholder="Search" className="border-0 w-100" />
               <Search style={{ color: "gray", fontSize: 16 }} />
             </div>
           </Grid>
@@ -28,9 +32,16 @@ const Navbar = () => {
             justifyContent="end"
             height="100%"
           >
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
+            <Link href="/cart" role="button">
+              <Badge badgeContent={cartLength} color="primary" role="button">
+                <ShoppingCartOutlined />
+              </Badge>
+            </Link>
+
+            <Search
+              style={{ color: "gray", fontSize: 16 }}
+              className="d-md-none"
+            />
           </Grid>
         </Grid>
       </Container>

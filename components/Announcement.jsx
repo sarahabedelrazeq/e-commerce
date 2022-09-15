@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import Container from "./Container";
 
 const Announcement = () => {
   return (

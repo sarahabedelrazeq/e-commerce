@@ -3,8 +3,10 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/app";
 
 const Info = styled("div")(({ theme, ...props }) => ({
   opacity: 0,
@@ -58,13 +60,17 @@ const Icon = styled("div")(({ theme, ...props }) => ({
 }));
 
 const Product = ({ item }) => {
+  const dispatch = useDispatch();
+
   return (
     <Container>
       <Image src={item.image} />
       <Info className="Info">
-        <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
+        <Button onClick={() => dispatch(addToCart({ id: item.id, num: 1 }))}>
+          <Icon>
+            <ShoppingCartOutlined />
+          </Icon>
+        </Button>
         <Icon>
           <Link href={`/product/${item.id}`}>
             <SearchOutlined />
