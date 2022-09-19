@@ -7,6 +7,11 @@ import Container from "./Container";
 
 const Navbar = () => {
   const [cartLength, setCartLength] = React.useState(0);
+  const { cart } = useSelector(({ app }) => app);
+
+  React.useEffect(() => {
+    setCartLength(Object.values(cart).length);
+  }, [cart]);
 
   return (
     <div className="py-2">
@@ -14,7 +19,9 @@ const Navbar = () => {
         <Grid spacing={2} container alignItems="center" width="100%">
           <Grid item md={4} xs={6}>
             <h1 className="fw-bold text-black">
-              <Link href="/">LAMA.</Link>
+              <Link href="/">
+                <span className="text-primary" role="button">SARAH.</span>
+              </Link>
             </h1>
           </Grid>
           <Grid item md={4} xs={0} className="d-none d-md-block">

@@ -1,6 +1,4 @@
-import styled from "styled-components";
 import Products from "../../components/Products";
-import { mobile } from "../../responsive";
 import ProductsSkeleton from "../../components/Products/Skeleton";
 import React from "react";
 import { useRouter } from "next/router";

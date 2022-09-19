@@ -2,7 +2,7 @@ import Container from "./Container";
 
 const Announcement = () => {
   return (
-    <div className="bg-teal">
+    <div className="bg-primary">
       <Container>
         <p
           className="fs-6 text-white text-center d-flex align-items-center justify-content-center py-2"

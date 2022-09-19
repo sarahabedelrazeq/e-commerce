@@ -17,6 +17,14 @@ function MyApp({ Component, pageProps }) {
         xxl: 1400,
       },
     },
+    palette: {
+      primary: {
+        main: "#8000ff",
+        light: "#8000ff",
+        dart: "#8000ff",
+        contrastText: "#fff",
+      },
+    },
   });
   return (
     <Provider store={store}>
