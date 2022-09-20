@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Container = styled("div")(({ theme, ...props }) => ({
-  flex: 1,
+  flex: "1",
   margin: "3px",
   height: "50vh",
   position: "relative",
@@ -40,7 +40,15 @@ const CategoryItem = ({ item }) => {
     <Container>
       <Image
         alt={item}
-        src="https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        src={`${
+          item === "women's clothing"
+            ? "/images/women.jpeg"
+            : item === "men's clothing"
+            ? "/images/men.jpg"
+            : item === "electronics"
+            ? "/images/electronics.webp"
+            : "/images/jewelery.jpg"
+        }`}
         layout="fill"
         objectFit="cover"
       />

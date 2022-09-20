@@ -8,27 +8,10 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import { Grid } from "@mui/material";
+import Link from "next/link";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import Container from "./Container";
-
-
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
-
-const Logo = styled.h1``;
-
-const Desc = styled.p`
-  margin: 20px 0px;
-`;
-
-const SocialContainer = styled.div`
-  display: flex;
-`;
 
 const SocialIcon = styled.div`
   width: 40px;
@@ -39,36 +22,6 @@ const SocialIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
-`;
-
-const Center = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ display: "none" })}
-`;
-
-const Title = styled.h3`
-  margin-bottom: 30px;
-`;
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 10px;
-`;
-
-const Right = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ backgroundColor: "#fff8f8" })}
 `;
 
 const ContactItem = styled.div`
@@ -87,54 +40,88 @@ const Footer = () => {
       <Container>
         <Grid spacing={2} container alignItems="center">
           <Grid item sm={4} xs={12}>
-            <Logo>LAMA.</Logo>
-            <Desc>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form, by
-              injected humour, or randomised words which don’t look even
-              slightly believable.
-            </Desc>
-            <SocialContainer>
-              <SocialIcon color="3B5999">
-                <Facebook />
-              </SocialIcon>
-              <SocialIcon color="E4405F">
-                <Instagram />
-              </SocialIcon>
-              <SocialIcon color="55ACEE">
-                <Twitter />
-              </SocialIcon>
-              <SocialIcon color="E60023">
-                <Pinterest />
-              </SocialIcon>
-            </SocialContainer>
+            <div className="mb-3">
+              <h1 className="fw-bold text-black">
+                <Link href="/">
+                  <span className="text-primary" role="button">
+                    SARAH.
+                  </span>
+                </Link>
+              </h1>
+            </div>
+            <div className="mb-3">
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form, by
+                injected humour, or randomised words which don’t look even
+                slightly believable.
+              </p>
+            </div>
+            <div className="mb-3">
+              <div className="d-flex align-items-center align-items-center gap-3">
+                <SocialIcon color="3B5999">
+                  <Facebook />
+                </SocialIcon>
+                <SocialIcon color="E4405F">
+                  <Instagram />
+                </SocialIcon>
+                <SocialIcon color="55ACEE">
+                  <Twitter />
+                </SocialIcon>
+                <SocialIcon color="E60023">
+                  <Pinterest />
+                </SocialIcon>
+              </div>
+            </div>
           </Grid>
           <Grid item sm={4} xs={12}>
-            <Title>Useful Links</Title>
-            <List>
-              <ListItem>Home</ListItem>
-              <ListItem>Cart</ListItem>
-              <ListItem>Man Fashion</ListItem>
-              <ListItem>Woman Fashion</ListItem>
-              <ListItem>Accessories</ListItem>
-              <ListItem>My Account</ListItem>
-              <ListItem>Order Tracking</ListItem>
-              <ListItem>Wishlist</ListItem>
-              <ListItem>Wishlist</ListItem>
-              <ListItem>Terms</ListItem>
-            </List>
+            <div className="mb-3">
+              <h3>Useful Links</h3>
+            </div>
+            <ul className="p-0 m-0 list-unstyled">
+              <li className="m-0 p-0 mb-2">
+                <Link href="/">
+                  <span className="text-black" role="button">
+                    Home
+                  </span>
+                </Link>
+              </li>
+              <li className="m-0 p-0 mb-2">
+                <Link href="/cart">
+                  <span className="text-black" role="button">
+                    Cart
+                  </span>
+                </Link>
+              </li>
+              <li className="m-0 p-0 mb-2">
+                <Link href="/productList/men's%20clothing">
+                  <span className="text-black" role="button">
+                    Man Fashion
+                  </span>
+                </Link>
+              </li>
+              <li className="m-0 p-0 mb-2">
+                <Link href="/productList/women's%20clothing">
+                  <span className="text-black" role="button">
+                    Woman Fashion
+                  </span>
+                </Link>
+              </li>
+            </ul>
           </Grid>
           <Grid item sm={4} xs={12}>
-            <Title>Contact</Title>
+            <div className="mb-3">
+              <h3>Contact</h3>
+            </div>
             <ContactItem>
-              <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-              Tobinchester 98336
+              <Room style={{ marginRight: "10px" }} /> Amman/Jordan
             </ContactItem>
             <ContactItem>
-              <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+              <Phone style={{ marginRight: "10px" }} /> +962785584039
             </ContactItem>
             <ContactItem>
-              <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+              <MailOutline style={{ marginRight: "10px" }} />{" "}
+              sarah.abed.elrazeq@gmail.com
             </ContactItem>
             <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
           </Grid>
@@ -145,4 +132,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
