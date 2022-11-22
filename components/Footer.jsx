@@ -10,7 +10,6 @@ import {
 import { Grid } from "@mui/material";
 import Link from "next/link";
 import styled from "styled-components";
-import { mobile } from "../responsive";
 import Container from "./Container";
 
 const SocialIcon = styled.div`

@@ -1,7 +1,7 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import { Button, Grid, styled } from "@mui/material";
 import { useState } from "react";
-import { sliderItems } from "../data";
+import { sliderItems } from "data";
 import Container from "./Container";
 
 const Arrow = styled("div")(({ theme, ...props }) => ({

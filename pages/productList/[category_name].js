@@ -1,9 +1,9 @@
-import Products from "../../components/Products";
-import ProductsSkeleton from "../../components/Products/Skeleton";
+import Products from "components/Products";
+import ProductsSkeleton from "components/Products/Skeleton";
 import React from "react";
 import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
-import Container from "../../components/Container";
+import Container from "components/Container";
 
 const ProductList = () => {
   const [products, setProducts] = React.useState([]);

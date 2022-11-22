@@ -3,9 +3,9 @@ import Image from "next/future/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import Amount from "../../components/Amount";
-import Container from "../../components/Container";
-import { addToCart } from "../../store/app";
+import Amount from "components/Amount";
+import Container from "components/Container";
+import { addToCart } from "store/app";
 
 const Cart = () => {
   const { cart } = useSelector(({ app }) => app);

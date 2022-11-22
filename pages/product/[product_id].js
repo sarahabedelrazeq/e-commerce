@@ -3,7 +3,7 @@ import { Button, Grid, Rating } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import Container from "../../components/Container";
+import Container from "components/Container";
 
 const Product = () => {
   const [product, setProduct] = React.useState([]);

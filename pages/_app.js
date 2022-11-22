@@ -1,8 +1,8 @@
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
-import store, { persistor } from "../store";
+import store, { persistor } from "store";
 import "../sass/index.scss";
-import Layout from "../components/Layout";
+import Layout from "components/Layout";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 function MyApp({ Component, pageProps }) {

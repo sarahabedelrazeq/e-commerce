@@ -1,9 +1,9 @@
 import React from "react";
-import Categories from "../components/Categories";
-import Products from "../components/Products";
-import ProductsSkeleton from "../components/Products/Skeleton";
-import CategoriesSkeleton from "../components/Categories/Skeleton";
-import Slider from "../components/Slider";
+import Categories from "components/Categories";
+import Products from "components/Products";
+import ProductsSkeleton from "components/Products/Skeleton";
+import CategoriesSkeleton from "components/Categories/Skeleton";
+import Slider from "components/Slider";
 
 const Home = () => {
   const [products, setProducts] = React.useState([]);

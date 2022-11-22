@@ -6,7 +6,7 @@ import {
 import { Button, styled } from "@mui/material";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/app";
+import { addToCart } from "store/app";
 
 const Info = styled("div")(({ theme, ...props }) => ({
   opacity: 0,
